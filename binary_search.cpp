@@ -25,3 +25,18 @@ int binarySearch(int a[], int item, int low, int high)
     } 
     return -1; 
 } 
+
+//There exists some 0 < i < A.length - 1 such that A[0] < A[1] < ... A[i-1] < A[i] > A[i+1] > ... > A[A.length - 1]
+//return any i such that A[0] < A[1] < ... A[i-1] < A[i] > A[i+1] > ... > A[A.length - 1].
+int binary_search(vector<int> A, int low, int high){
+    if(low<high){
+        int mid=low+(high-low)/2;
+        if(A[mid]>A[mid+1] && A[mid]>A[mid-1])
+            return mid;
+        else if(A[mid]>A[mid+1])
+            return binary_search(A, low, mid+1);
+        else
+            return binary_search(A, mid, high);
+    }
+    return 0;
+}
