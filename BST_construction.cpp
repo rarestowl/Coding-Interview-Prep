@@ -45,4 +45,15 @@ Node *binaryTreeToBST (Node *root)
     put_inorder(root, &i, v);
     return root;
 }
-/***************************************************************/
+/**************  sorted array to bst tree  ****************/
+Node* form(vector<int> v, int start, int end){
+    if(start<=end){
+        int middle = (start+end)/2;
+        Node* root = new Node(v[middle]);
+        root->left = form(v, start, middle-1);
+        root->right = form(v, middle+1, end);
+        return root;
+    }
+    return NULL;
+}
+/************************************************************/
