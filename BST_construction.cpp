@@ -20,4 +20,29 @@ Node* constructTree ( int pre[], int size ){
 	} 
 	return root; 
 } 
-/***********************************************************/
+/************** (Binary Tree/ Array) to BST ******************/
+void inorder(Node *root, vector<int> &v){
+    if(root==NULL)
+        return;
+    inorder(root->left, v);
+    v.push_back(root->data);
+    inorder(root->right, v);
+}
+void put_inorder(Node *root, int *i, vector<int> v){
+    if(root==NULL)
+        return;
+    put_inorder(root->left, i, v);
+    root->data = v[*i];
+    (*i)++;
+    put_inorder(root->right, i, v);
+}
+Node *binaryTreeToBST (Node *root)
+{
+    vector<int> v;
+    inorder(root, v);
+    sort(v.begin(), v.end());
+    int i=0;
+    put_inorder(root, &i, v);
+    return root;
+}
+/***************************************************************/
